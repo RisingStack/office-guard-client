@@ -1,4 +1,5 @@
 var ambientSensor = require('./ambient');
+var climateSensor = require('./climate');
 
 var async = require('async');
 
@@ -9,7 +10,9 @@ function onError (err) {
 function getAllValues (done) {
   async.parallel({
     lightLevel: getLightLevel,
-    soundLevel: getSoundLevel
+    soundLevel: getSoundLevel,
+    temperature: readTemperature,
+    humidity: readHumidity
   }, done)
 }
 
@@ -21,12 +24,24 @@ function getSoundLevel (done) {
   ambientSensor.getSoundLevel(done);
 }
 
+function readTemperature (done) {
+  climateSensor.readTemperature(done);
+}
+
+function readHumidity (done) {
+  climateSensor.readHumidity(done);
+}
 
 // Bootstrapping all the module
 function init (done) {
   async.parallel([
     function (cb) {
       ambientSensor.init({
+        onError: onError
+      }, cb);
+    },
+    function (cb) {
+      climateSensor.init({
         onError: onError
       }, cb);
     }
@@ -45,6 +60,10 @@ module.exports.init = init;
 // from the ambient module
 module.exports.getLightLevel = getLightLevel;
 module.exports.getSoundLevel = getSoundLevel;
+
+// from the climate module
+module.exports.readTemperature = readTemperature;
+module.exports.readHumidity = readHumidity;
 
 // from all the modules
 module.exports.getAllValues = getAllValues;
