@@ -7,7 +7,9 @@ var accelerometer = accelerometerlib.use(tessel.port[config.ports.ambient]);
 function init (options, done) {
   accelerometer.on('ready', function () {
 
-    module.exports.getSoundLevel = accelerometer.getAcceleration.bind(this);
+    console.log('ACCELEROMETER: Ready');
+
+    module.exports.getAcceleration = accelerometer.getAcceleration.bind(this);
 
     return done ();
   });

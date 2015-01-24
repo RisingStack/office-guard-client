@@ -7,6 +7,8 @@ var climate = climatelib.use(tessel.port[config.ports.climate]);
 function init (options, done) {
   climate.on('ready', function () {
 
+    console.log('CLIMATE: Ready');
+
     var _this = this;
 
     module.exports.readTemperature = function (cb) {

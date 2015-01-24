@@ -1,6 +1,6 @@
+var accelerometerSensor = require('./accelerometer');
 var ambientSensor = require('./ambient');
 var climateSensor = require('./climate');
-var accelerometerSensor = require('./accelerometer');
 
 var async = require('async');
 
@@ -66,7 +66,8 @@ function init (done) {
       throw err;
     }
 
-    console.log('Init of sensors are finished');
+    console.log('All the sensors are ready');
+
     return done(null);
   });
 }

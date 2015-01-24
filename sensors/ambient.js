@@ -7,6 +7,8 @@ var ambient = ambientlib.use(tessel.port[config.ports.ambient]);
 function init (options, done) {
   ambient.on('ready', function () {
 
+    console.log('AMBIENT: Ready');
+
     module.exports.getSoundLevel = ambient.getSoundLevel.bind(this);
     module.exports.getLightLevel = ambient.getLightLevel.bind(this);
 

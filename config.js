@@ -3,8 +3,8 @@ module.exports = config;
 
 config.ports = {
   ambient: 'B',
-  climate: 'A',
-  accelerometer: 'D'
+  climate: 'C',
+  accelerometer: 'A'
 };
 
 // possible options for temperature scales: 'c' (Celsius) or 'f' (Fahrenheit)
