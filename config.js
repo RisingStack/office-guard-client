@@ -15,3 +15,23 @@ config.climate = {
 config.server = {
   port: 3000
 };
+
+config.alerts = {
+  interval: 15 * 1000, //check them every 15 seconds
+  temperature: {
+    gt: 20,
+    lt: 30
+  },
+  lightLevel: {
+    gt: 0.01,
+    lt: 0.5
+  },
+  soundLevel: {
+    gt: 0.01,
+    lt: 0.1
+  },
+  humidity: {
+    gt: 20,
+    lt: 60
+  }
+};
