@@ -31,8 +31,8 @@ cd office-guard
 npm i
 ```
 
-Connect your modules to the ports as defined in the `config.js` file. **(Be aware: you may change them,
-but some weird things can happen, like modules conflicting with each other)**
+Connect your modules to the ports as defined in the `config.js` file. *(Be aware: you may change them,
+but some weird things can happen, like modules conflicting with each other)*
 
 # Deploying to the Tessel
 
