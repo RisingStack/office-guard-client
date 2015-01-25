@@ -1,4 +1,5 @@
 var https = require('https');
+var util = require('util');
 
 var config = require('../config');
 
@@ -9,33 +10,14 @@ var z;
 
 function sendAlert (property, value) {
   console.log('Sending alert... %s : %s', property, value);
-  var payload = {
-    apiKey: '1d3ee033-914c-49e5-8876-1c12f88be761',
-    message: 'OfficeGuard Alert! ' + property + ' reached value: ' + value
-  };
+  var message = 'OfficeGuard Alert! ' + property + ' reached value: ' + value;
 
-  var options = {
-    host: 'api.opsgenie.com',
-    path: '/v1/json/alert',
-    method: 'POST',
-    port: 443,
-    rejectUnauthorized: false
-  };
-
-  var request = https.request(options, function(res) {
+  https.get(util.format('https://%s/v1/json/alert?&message=%s', config.OfficeGuardServer.url,  message), function(res) {
     res.setEncoding('utf8');
     res.on('data', function (chunk) {
       console.log('Response: ' + chunk);
     });
   });
-
-  request.on('error', function (err) {
-    //todo: proper error handling
-    console.log(err);
-  });
-
-  request.write(JSON.stringify(payload));
-  request.end();
 }
 
 function compare(gt, lt, value) {
@@ -51,7 +33,7 @@ function compare(gt, lt, value) {
 }
 
 function checkValues(sensors) {
-  var tresholds = config.alerts;
+  var thresholds = config.alerts;
 
   sensors.getAllValues(function (err, values) {
     if (err) {
@@ -60,7 +42,7 @@ function checkValues(sensors) {
 
     for (var key in values) {
       if (tresholds.hasOwnProperty(key)) {
-        if (!compare(tresholds[key].gt, tresholds[key].lt, values[key])) {
+        if (!compare(thresholds[key].gt, thresholds[key].lt, values[key])) {
           sendAlert(key, values[key]);
         }
       }

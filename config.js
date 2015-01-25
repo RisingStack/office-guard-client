@@ -20,7 +20,7 @@ config.alerts = {
   interval: 15 * 1000, //check them every 15 seconds
   temperature: {
     gt: 20,
-    lt: 30
+    lt: 25
   },
   lightLevel: {
     gt: 0.01,
@@ -34,4 +34,8 @@ config.alerts = {
     gt: 20,
     lt: 60
   }
+};
+
+config.OfficeGuardServer = {
+  url: 'https://opsgenie-proxy.herokuapp.com'
 };
