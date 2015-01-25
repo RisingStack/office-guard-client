@@ -41,7 +41,7 @@ function checkValues(sensors) {
     }
 
     for (var key in values) {
-      if (tresholds.hasOwnProperty(key)) {
+      if (thresholds.hasOwnProperty(key)) {
         if (!compare(thresholds[key].gt, thresholds[key].lt, values[key])) {
           sendAlert(key, values[key]);
         }
