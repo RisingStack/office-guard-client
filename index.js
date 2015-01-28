@@ -13,13 +13,13 @@ sensors.init(function (err) {
     sensors: sensors
   });
 
-  //server({
-  //  sensors: sensors
-  //}).listen(config.server.port, function (err) {
-  //  if (err) {
-  //    throw (err);
-  //  }
-  //
-  //  console.log('Office-guard is up and running!');
-  //});
+  server({
+    sensors: sensors
+  }).listen(config.server.port, function (err) {
+    if (err) {
+      throw (err);
+    }
+
+    console.log('Office-guard is up and running!');
+  });
 });

@@ -31,6 +31,8 @@ cd office-guard
 npm i
 ```
 
+Make a copy of `config.example.js`, and name it `config.js`.
+
 Connect your modules to the ports as defined in the `config.js` file. *(Be aware: you may change them,
 but some weird things can happen, like modules conflicting with each other)*
 
