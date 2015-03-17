@@ -4,6 +4,8 @@ var alerts = require('./alerts');
 
 var config = require('./config');
 
+console.log('Woooooow');
+
 sensors.init(function (err) {
  if (err) {
    throw err;
